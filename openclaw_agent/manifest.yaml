@@ -1,0 +1,44 @@
+# Hermes MCP catalog entry for the openclaw_agent MCP server.
+#
+# Local-only entry for via54 host; presence in HERMES_OPTIONAL_MCPS dir means
+# it's discoverable via `hermes mcp catalog`. No PR to NousResearch/hermes-agent
+# required — set HERMES_OPTIONAL_MCPS env var to the parent of this dir.
+
+manifest_version: 1
+
+name: openclaw_agent
+description: |
+  Drive WSL-resident OpenClaw agent subagents from Hermes via a thin stdio MCP
+  wrapper. Provides version detection, background/foreground spawn, status,
+  and cancel tools — model-aware so it can route subagents to a working
+  provider (default openclaw config may point at a dead Gemini key).
+source: https://github.com/via54/hermes-openclaw-agent-mcp
+
+transport:
+  type: stdio
+  command: "python3"
+  args:
+    - "-u"
+    - "${INSTALL_DIR}/server.py"
+
+install:
+  type: git
+  url: https://github.com/via54/hermes-openclaw-agent-mcp.git
+  ref: v0.1.0
+  bootstrap:
+    - "pip install --user mcp"
+
+auth:
+  type: none
+
+tools:
+  default_enabled:
+    - openclaw_agent_version
+    - openclaw_agent_spawn
+    - openclaw_agent_status
+    - openclaw_agent_cancel
+
+post_install: |
+  OpenClaw is required: `npm install -g openclaw` then `openclaw onboard`.
+  Re-run `hermes mcp install openclaw_agent --reinstall` after upgrading
+  either OpenClaw or this wrapper.
