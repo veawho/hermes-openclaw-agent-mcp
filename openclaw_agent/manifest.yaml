@@ -32,11 +32,7 @@ auth:
   type: none
 
 tools:
-  default_enabled:
-    - openclaw_agent_version
-    - openclaw_agent_spawn
-    - openclaw_agent_status
-    - openclaw_agent_cancel
+  default_enabled: []   # probe succeeded but tool-name prefix mismatch (server exposes bare names like 'version' not 'openclaw_agent_version'); explicitly empty to trigger the "all-on / no filter" path in hermes mcp_catalog._apply_tool_selection
 
 post_install: |
   OpenClaw is required: `npm install -g openclaw` then `openclaw onboard`.
