@@ -26,7 +26,7 @@ install:
   url: https://github.com/veawho/hermes-openclaw-agent-mcp.git
   ref: v0.1.0
   bootstrap:
-    - "pip install --user mcp"
+    - "pip install --user --break-system-packages mcp"
 
 auth:
   type: none
