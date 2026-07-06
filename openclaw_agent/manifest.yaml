@@ -12,7 +12,7 @@ description: |
   wrapper. Provides version detection, background/foreground spawn, status,
   and cancel tools — model-aware so it can route subagents to a working
   provider (default openclaw config may point at a dead Gemini key).
-source: https://github.com/via54/hermes-openclaw-agent-mcp
+source: https://github.com/veawho/hermes-openclaw-agent-mcp
 
 transport:
   type: stdio
@@ -23,7 +23,7 @@ transport:
 
 install:
   type: git
-  url: https://github.com/via54/hermes-openclaw-agent-mcp.git
+  url: https://github.com/veawho/hermes-openclaw-agent-mcp.git
   ref: v0.1.0
   bootstrap:
     - "pip install --user mcp"
